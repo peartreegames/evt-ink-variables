@@ -1,0 +1,21 @@
+﻿{
+  "name": "PeartreeGames.EvtInkVariables.Editor",
+  "rootNamespace": "PeartreeGames.EvtInkVariables.Editor",
+  "references": [
+    "PeartreeGames.EvtInkVariables",
+    "PeartreeGames.EvtVariables.Editor",
+    "PeartreeGames.EvtVariables",
+    "Ink-Libraries"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

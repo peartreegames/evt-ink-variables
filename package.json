@@ -1,0 +1,26 @@
+{
+    "name": "com.peartreegames.evtinkvariables",
+    "version": "0.1.0",
+    "displayName": "EvtInkVariables",
+    "description": "ScriptableObject Architecture Ink Variables",
+    "unity": "2021.2",
+    "unityRelease": "2f1",
+    "documentationUrl": "https://github.com/peartreegames/evt-ink-variables",
+    "changelogUrl": "https://github.com/peartreegames/evt-ink-variables/changelog.html",
+    "licensesUrl": "https://github.com/peartreegames/evt-ink-variables/licensing.html",
+    "keywords": [
+        "peartree",
+        "scriptableobject",
+        "ink"
+    ],
+    "dependencies": {
+        "com.peartreegames.evtvariables": "0.1.0",
+        "com.inklestudios.ink-unity-integration": "1.0.2"
+    },
+    "author": {
+        "name": "Peartree Games",
+        "email": "bgk@peartree.games",
+        "url": "https://peartree.games"
+    },
+    "type": "module"
+}
