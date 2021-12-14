@@ -1,27 +1,29 @@
 ﻿using System;
 using Ink.Runtime;
 using PeartreeGames.EvtVariables;
+using UnityEngine;
 
 namespace PeartreeGames.EvtInkVariables
 {
     public class EvtInkStringObject : EvtStringObject, IStory
     {
-        public Story story { get; set; }
+        [SerializeField] private EvtStoryObject story;
+        public Story Story => story.Value;
         private int _count;
 
         public override string Value
         {
-            get => story ? (string) story.variablesState[name] : default;
+            get => Story ? (string) Story.variablesState[name] : default;
             set
             {
-                if (story != null) story.variablesState[name] = value;
+                if (Story != null) Story.variablesState[name] = value;
                 base.Value = value;
             }
         }
 
         public override void Subscribe(Action listener)
         {
-            if (_count == 0) story.ObserveVariable(name, Observe);
+            if (_count == 0) Story.ObserveVariable(name, Observe);
             _count++;
             base.Subscribe(listener);
         }
@@ -29,27 +31,27 @@ namespace PeartreeGames.EvtInkVariables
         public override void Unsubscribe(Action listener)
         {
             _count--;
-            if (_count == 0) story.RemoveVariableObserver(Observe, name);
+            if (_count == 0) Story.RemoveVariableObserver(Observe, name);
             base.Unsubscribe(listener);
         }
 
         public override void Subscribe(Action<string> listener)
         {
-            if (_count == 0) story.ObserveVariable(name, Observe);
-            story.ObserveVariable(name,Observe);
+            if (_count == 0) Story.ObserveVariable(name, Observe);
+            Story.ObserveVariable(name,Observe);
             base.Subscribe(listener);
         }
         
         public override void Unsubscribe(Action<string> listener)
         {
             _count--;
-            if (_count == 0) story.RemoveVariableObserver(Observe, name);
+            if (_count == 0) Story.RemoveVariableObserver(Observe, name);
             base.Unsubscribe(listener);
         }
         
         private void OnDisable()
         {
-            if (story != null) story.RemoveVariableObserver(Observe, name);
+            if (Story != null) Story.RemoveVariableObserver(Observe, name);
         }
 
         private void Observe(string _, object value) => Value = (string)value;

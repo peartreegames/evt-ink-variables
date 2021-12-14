@@ -12,19 +12,24 @@ namespace PeartreeGames.EvtInkVariables.Editor
     {
         private SerializedProperty _inkFileProperty;
         private SerializedProperty _variablesProperty;
+        private SerializedProperty _storyProperty;
 
         private void OnEnable()
         {
             _inkFileProperty = serializedObject.FindProperty("inkFile");
             _variablesProperty = serializedObject.FindProperty("variables");
+            _storyProperty = serializedObject.FindProperty("story");
         }
 
         public override VisualElement CreateInspectorGUI()
         {
             var fileInput = new PropertyField(_inkFileProperty);
             fileInput.Bind(serializedObject);
+            var storyInput = new PropertyField(_storyProperty);
+            storyInput.Bind(serializedObject);
             var elem = new VisualElement();
             elem.Add(fileInput);
+            elem.Add(storyInput);
             
             elem.Add(new Button(() =>
             {
@@ -63,12 +68,17 @@ namespace PeartreeGames.EvtInkVariables.Editor
                         case "string":
                             var evtString = CreateInstance<EvtInkStringObject>();
                             evtString.name = variable;
+
                             asset = evtString;
                             break;
                         default:
                             continue;
                     }
-                    
+
+                    var serializedAsset = new SerializedObject(asset);
+                    serializedAsset.FindProperty("story").objectReferenceValue =
+                        _storyProperty.objectReferenceValue;
+                    serializedAsset.ApplyModifiedProperties();
                     AssetDatabase.AddObjectToAsset(asset, target);
                     AssetDatabase.SaveAssets();
                     AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(asset));

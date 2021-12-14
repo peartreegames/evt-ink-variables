@@ -4,6 +4,6 @@ namespace PeartreeGames.EvtInkVariables
 {
     public interface IStory
     {
-        public Story story { get; set; }
+        public Story Story { get; }
     }
 }
