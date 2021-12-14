@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PeartreeGames.EvtInkVariables
 {
-    public class EvtInkVariableLoader : MonoBehaviour
+    public class EvtInkStoryLoader : MonoBehaviour
     {
         [SerializeField] private EvtStoryObject storyObject;
 
