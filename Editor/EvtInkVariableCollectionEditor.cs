@@ -68,8 +68,12 @@ namespace PeartreeGames.EvtInkVariables.Editor
                         case "string":
                             var evtString = CreateInstance<EvtInkStringObject>();
                             evtString.name = variable;
-
                             asset = evtString;
+                            break;
+                        case "list":
+                            var evtList = CreateInstance<EvtInkListObject>();
+                            evtList.name = variable;
+                            asset = evtList;
                             break;
                         default:
                             continue;
